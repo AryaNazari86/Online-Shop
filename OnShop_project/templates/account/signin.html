@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block load_files %}
+{% load static %}
+<link href="{% static 'form.css' %}" rel="stylesheet" >
+{% endblock %}
+
+{%block content%}
+<main class="form-signin">
+  <form action="{% url 'signin' %}" method="post">
+    {% csrf_token %}
+    <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+    {% if form.errors %}
+    <p>username or password incorrect!</p>
+    {% endif %}
+    <div class="form-floating">
+      <input type="text" class="form-control" id="username" name="username"/>
+      <label for="username">UserName</label>
+    </div>
+    <div class="form-floating">
+      <input type="password" class="form-control" id="password" name="password"/>
+      <label for="password">Password</label>
+    </div>
+
+    <input class="w-100 btn btn-lg btn-primary" type="submit" value="Sign In!"/>
+
+  </form>
+</main>
+
+
+{%endblock%}

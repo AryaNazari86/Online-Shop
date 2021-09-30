@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block load_files %}
+{% load static%}
+
+{% endblock %}
+
+{%block content%}
+
+<div>
+    <div>
+        <img src="{{request.user.image.url}}">
+    </div>
+    <div>
+        <h1>{{request.user.username}}</h1>
+    </div>
+    <div>
+        <h5>{{request.user.first_name}} {{request.user.last_name}}</h5>
+    </div>
+    <div>
+        <p>{{request.user.about}}</p>
+    </div>
+    {% for product in request.user.products %}
+    <p>{{product}}</p>
+    {% endfor %}
+    <div>
+        <ul>
+        {% for product in request.user.products %}
+            <li><p>{{product.title}}</p></li>
+        {% endfor %}
+        </ul>
+    </div>
+</div>
+
+{%endblock%}
