@@ -2,42 +2,37 @@
 
 {% block load_files %}
 {% load static %}
-<link href="{% static 'form.css' %}" rel="stylesheet" >
+<link href="{% static 'form.css' %}" rel="stylesheet">
 {% endblock %}
 
 {%block content%}
-<main class="form-signin">
-  <form action="{% url 'signup' %}" method="post">
-    {% csrf_token %}
-    <h1 class="h3 mb-3 fw-normal">Please sign up</h1>
+<form action="{% url 'signup' %}" method="post">
+  {% csrf_token %}
+  <h1 class="h3 mb-3 fw-normal">Please sign up</h1>
 
-    <div class="form-floating">
-      <input type="text" class="form-control" id="username" name="username"/>
-      <label for="username">UserName</label>
-    </div>
-    <div class="form-floating">
-      <input type="text" class="form-control" id="first_name" name="first_name"/>
-      <label for="first_name">First Name</label>
-    </div>
-    <div class="form-floating">
-      <input type="text" class="form-control" id="last_name" name="last_name"/>
-      <label for="last_name">Last Name</label>
-    </div>
-    <div class="form-floating">
-      <input type="text" aria-multiline="true" class="form-control" id="about" name="about"/>
-      <label for="about">About</label>
-    </div>
-    <div class="form-floating">
-      <input type="password" class="form-control" id="password" name="password"/>
-      <label for="password">Password</label>
-    </div>
-    <div class="form-floating">
-      <input type="file" >
-    </div>
-    <div class="form-floating">
-      <input type="submit" class="btn btn-secondary" value="SignUp!">
-    </div>
+  <div class="input-group mb-3">
+    <span class="input-group-text" id="basic-addon1">@</span>
+    <input type="text" placeholder="Username" class="form-control" id="username" name="username" />
+  </div>
+  <div class="input-group">
+    <span class="input-group-text">First and last name</span>
+    <input type="text" class="form-control" id="first_name" name="first_name" />
+    <input type="text" class="form-control" id="last_name" name="last_name" />
+  </div>
+  <div class="input-group">
+    <span class="input-group-text">With textarea</span>
+    <textarea type="text" aria-multiline="true" class="form-control" id="about" name="about"></textarea>
+  </div>
+  <div class="form-floating">
+    <input type="password" class="form-control" id="password" name="password" />
+    <label for="password">Password</label>
+  </div>
+  <div class="form-floating">
+    <input type="file">
+  </div>
+  <div class="form-floating">
+    <input type="submit" class="btn btn-secondary" value="SignUp!">
+  </div>
 
-  </form>
-</main>
+</form>
 {%endblock%}

@@ -29,8 +29,16 @@
         </ul>
 
         <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" action="{% url 'search' %}" method="get">
-          <input name="search_value" type="search" class="form-control form-control-dark" placeholder="Search..."
-            aria-label="Search">
+          <div class="form-floating mb-3">
+            <input name="search_value" type="search" class="form-control form-control-dark" placeholder="Search..."
+              aria-label="Search" id="search">
+          </div>
+        </form>
+
+        <form class="form-floating">
+          <input type="email" class="form-control" id="floatingInputValue" placeholder="name@example.com"
+            value="test@example.com">
+          <label for="floatingInputValue">Input with value</label>
         </form>
 
         <div class="text-end">
