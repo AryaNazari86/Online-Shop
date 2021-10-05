@@ -1,11 +1,23 @@
 {% extends "base.html" %}
 
+{% block load_files %}
+{% load static %}
+{% load static %}
+<link href="{% static 'search.css' %}" rel="stylesheet">
+{% endblock %}
+
 {% block content %}
-{% for product in products%}
-<div>
-<img src="{{ product.image.url }}">
-<h1>{{product.name}}</h1>
-<p>{{product.price}}</p>
+<div class="cont">
+  {% for product in products%}
+  <div class="card bg-dark text-black arya">
+    <img src="{{product.image.url}}" class="card-img" alt="...">
+    <div class="card-img-overlay">
+      <h5 class="card-title">{{product.name}}</h5>
+      <p class="card-text">{{ product.description }}</p>
+      <p class="card-text">{{ product.owner.username }}</p>
+      <p><a class="btn btn-lg btn-secondary" href="{{ product.get_absolute_url }}">View!</a></p>
+    </div>
+  </div>
+  {% endfor %}
 </div>
-{% endfor %}
 {% endblock %}

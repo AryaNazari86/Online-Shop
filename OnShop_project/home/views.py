@@ -4,5 +4,6 @@ from product.models import Product
 
 # Create your views here.
 def home(request):
+    products = Product.objects.all()
     length = len(Product.objects.all())
-    return render(request, 'home/index.html', {'recent_products': Product.objects.all()[length-3:length]})
+    return render(request, 'home/index.html', {'recent': products[length-3:length]})

@@ -1,17 +1,24 @@
 <!doctype html>
 <html lang="en">
+
 <head>
-    <title>Document</title>
-    {% load static %}
-    <link href="{% static 'bootstrap.min.css' %}" rel="stylesheet">
-    {% block load_files %}
-    {% endblock %}
+  <title>Document</title>
+  {% load static %}
+  <link href="{% static 'bootstrap.min.css' %}" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
+    crossorigin="anonymous"></script>
+  {% block load_files %}
+  {% endblock %}
 </head>
+
 <body>
-    <header class="p-3 bg-dark text-white">
+  <header class="p-3 bg-dark text-white">
     <div class="container">
       <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-          <a href="{%url 'home'%}" class="nav-link px-2 text-white"><h1>Onshop</h1></a>
+        <a href="{%url 'home'%}" class="nav-link px-2 text-white">
+          <h1>Onshop</h1>
+        </a>
 
         <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
           <li><a href="#" class="nav-link px-2 text-secondary">Home</a></li>
@@ -22,24 +29,38 @@
         </ul>
 
         <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" action="{% url 'search' %}" method="get">
-          <input name="search_value" type="search" class="form-control form-control-dark" placeholder="Search..." aria-label="Search">
-          <input type="submit" class="btn btn-warning" value="Search">
+          <input name="search_value" type="search" class="form-control form-control-dark" placeholder="Search..."
+            aria-label="Search">
         </form>
 
         <div class="text-end">
-            {% if request.user.is_authenticated %}
-                <a type="button" class="btn btn-sm btn-outline-secondary" href="{% url 'signout' %}" class="nav-link px-2 text-secondary">Sign-out!</a>
-                <a type="button" class="btn btn-sm btn-outline-secondary" href="{% url 'profile' %}" class="nav-link px-2 text-secondary">Profile</a>
-                <a type="button" class="btn btn-sm btn-outline-secondary" href="{% url 'create_product' %}" class="nav-link px-2 text-secondary">Add Product</a>
-            {% else %}
-                <a type="button" class="btn btn-sm btn-outline-secondary" href="{% url 'signin' %}" class="nav-link px-2 text-secondary">Sign-in!</a>
-                <a type="button" class="btn btn-sm btn-outline-secondary" href="{% url 'signup' %}" class="nav-link px-2 text-secondary">Sign-up!</a>
-            {% endif %}
+          {% if request.user.is_authenticated %}
+          <div class="dropdown text-end">
+            <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1"
+              data-bs-toggle="dropdown" aria-expanded="false">
+              <img src="{{ request.user.image.url }}" alt="mdo" class="rounded-circle" width="46" height="46">
+            </a>
+            <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
+              <li><a class="dropdown-item" href="{% url 'profile' %}">Profile</a></li>
+              <li><a class="dropdown-item" href="{% url 'create_product' %}">New Product!</a></li>
+              <li>
+                <hr class="dropdown-divider">
+              </li>
+              <li><a class="dropdown-item" href="{% url 'signout' %}">Logout!</a></li>
+            </ul>
+          </div>
+          {% else %}
+          <a type="button" class="btn btn-sm btn-outline-secondary" href="{% url 'signin' %}"
+            class="nav-link px-2 text-secondary">Sign-in!</a>
+          <a type="button" class="btn btn-sm btn-outline-secondary" href="{% url 'signup' %}"
+            class="nav-link px-2 text-secondary">Sign-up!</a>
+          {% endif %}
         </div>
       </div>
     </div>
-    </header>
-    {% block content %}
-    {% endblock %}
+  </header>
+  {% block content %}
+  {% endblock %}
 </body>
+
 </html>
