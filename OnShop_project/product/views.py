@@ -20,10 +20,10 @@ def create_product(request):
 
 
 def product_preview(request, id):
-    product = Product.objects.get(id=id)
+    product = Product.objects.filter(id=id).first()
 
     product.visited()
-    transaction.commit()
+    Product.objects.filter(id=id).update(views=product.views)
 
     return render(request, 'product/product_preview.html', {'obj': product})
 

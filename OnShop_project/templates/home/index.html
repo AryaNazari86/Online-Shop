@@ -4,7 +4,8 @@
 <link href="{% static 'home.css' %}" rel="stylesheet">
 {% endblock %}
 {% block content %}
-<div id="myCarousel" class="carousel carousel-dark slide" data-bs-ride="carousel">
+<h1>Latest</h1>
+<div id='recentsCarousel' class="carousel carousel-dark slide" data-bs-ride="carousel">
   <div class="carousel-indicators">
     <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-label="Slide 1"
       aria-current="true"></button>
@@ -14,7 +15,7 @@
   <div class="carousel-inner">
 
     {% for product in recent %}
-    {% if recent.1 == product %}
+    {% if recent.0 == product %}
     <div class="carousel-item active" data-bs-interval="10000">
       {% else %}
       <div class="carousel-item" data-bs-interval="10000">
@@ -30,15 +31,56 @@
       {% endfor %}
 
     </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+    <button class="carousel-control-prev" type="button" data-bs-target="#recentsCarousel" data-bs-slide="prev">
       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
       <span class="visually-hidden">Previous</span>
     </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+    <button class="carousel-control-next" type="button" data-bs-target="#recentsCarousel" data-bs-slide="next">
       <span class="carousel-control-next-icon" aria-hidden="true"></span>
       <span class="visually-hidden">Next</span>
     </button>
   </div>
 </div>
 </div>
+
+<h1>Most Famous</h1>
+
+<div id="famousCarousel" class="carousel carousel-dark slide" data-bs-ride="carousel">
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-label="Slide 1"
+      aria-current="true"></button>
+    <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2" class=""></button>
+    <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3" class=""></button>
+  </div>
+  <div class="carousel-inner">
+
+    {% for product in famous %}
+    {% if famous.0 == product %}
+    <div class="carousel-item active" data-bs-interval="10000">
+      {% else %}
+      <div class="carousel-item" data-bs-interval="10000">
+        {% endif %}
+        <img class="d-block w-100" width="100%" height="600" src="{{ product.image.url}}" aria-hidden="true">
+        <div class="carousel-caption d-none d-md-block">
+          <h1>{{product.name}}</h1>
+          <p>{{product.owner.username}}</p>
+          <p><a class="btn btn-lg btn-secondary" href="{{product.get_absolute_url}}">View!</a></p>
+        </div>
+      </div>
+
+      {% endfor %}
+
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#famousCarousel" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#famousCarousel" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+</div>
+</div>
+
 {% endblock %}

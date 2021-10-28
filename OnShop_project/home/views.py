@@ -6,4 +6,4 @@ from product.models import Product
 def home(request):
     products = Product.objects.all()
     length = len(Product.objects.all())
-    return render(request, 'home/index.html', {'recent': products[length-3:length]})
+    return render(request, 'home/index.html', {'recent': products[length-3:length], 'famous': products.order_by('views')[length-3:length]})
